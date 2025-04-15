@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "restoran"
+    label: "Daftar Restoran"
+    folder: "restoran"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nama Restoran", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "Gunakan tanda hubung ( - ) untuk spasi, contoh: mie-ayam-roy" }
+      - label: "Menu"
+        name: "menu"
+        widget: "list"
+        fields:
+          - { label: "Nama Menu", name: "nama", widget: "string" }
+          - { label: "Harga (Rp)", name: "harga", widget: "number", value_type: "int", min: 0, step: 1000 }

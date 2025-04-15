@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Direktori Restoran</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Direktori Restoran</h1>
+    <div id="restoran-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Daftar restoran akan di-render di sini -->
+    </div>
+  </div>
+
+  <script>
+    fetch('restoran/index.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('restoran-list');
+        data.forEach(item => {
+          container.innerHTML += `
+            <a href="restoran/${item.slug}.html" class="block p-4 bg-white rounded-xl shadow hover:shadow-md">
+              <h2 class="text-xl font-semibold">${item.title}</h2>
+              <p class="text-sm text-gray-600 mt-2">Klik untuk lihat menu</p>
+            </a>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
